@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KotlinSampleApplication</string>
+    <string name="title_activity_surface_view">SurfaceViewActivity</string>
+    <string name="app_label">KotlinSampleApplication</string>
+    <string name="settings_description">KotlinSample</string>
+    <string name="title_activity_recyclerview_main">RecyclerviewMainActivity</string>
+</resources>
