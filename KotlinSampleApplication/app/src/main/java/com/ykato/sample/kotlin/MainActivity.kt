@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val funcList = arrayOf("surfaceView", "recyclerView")
+        val funcList = arrayOf("surfaceView", "recyclerView", "textview")
 
         val listView = findViewById<ListView>(R.id.sampleList)
 
@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         listView.setOnItemClickListener { parent, view, position, id ->
             val intent = when (position) {
                 0 -> Intent(this, SurfaceViewActivity::class.java)
-                else -> Intent(this, RecyclerViewMainActivity::class.java)
+                1 -> Intent(this, RecyclerViewMainActivity::class.java)
+                else -> Intent(this, TextViewSampleActivity::class.java)
             }
             startActivity(intent)
         }
