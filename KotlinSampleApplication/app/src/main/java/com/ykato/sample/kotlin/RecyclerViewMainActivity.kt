@@ -1,9 +1,9 @@
 package com.ykato.sample.kotlin
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ykato.sample.kotlin.recyclerview.DateAdapter
 
 class RecyclerViewMainActivity : AppCompatActivity() {
@@ -13,10 +13,10 @@ class RecyclerViewMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.calendar)
+        val recyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.calendar)
         val adapter = DateAdapter(this)
         recyclerView.adapter = adapter
-        val layoutManager = GridLayoutManager(this, SPAN_COUNT)
+        val layoutManager = androidx.recyclerview.widget.GridLayoutManager(this, SPAN_COUNT)
         recyclerView.layoutManager = layoutManager
     }
 }

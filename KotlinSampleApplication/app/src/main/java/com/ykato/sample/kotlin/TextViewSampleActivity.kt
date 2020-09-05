@@ -1,10 +1,10 @@
 package com.ykato.sample.kotlin
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ykato.sample.kotlin.textview.TextViewSampleAdapter
 import android.os.AsyncTask
 
@@ -14,10 +14,10 @@ class TextViewSampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_view_sample)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.list)
+        val recyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.list)
         recyclerView.adapter = TextViewSampleAdapter(this)
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        recyclerView.addItemDecoration(androidx.recyclerview.widget.DividerItemDecoration(this, layoutManager.orientation))
     }
 }

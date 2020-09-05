@@ -1,7 +1,7 @@
 package com.ykato.sample.kotlin.textview
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,7 @@ import com.ykato.sample.kotlin.R
 import kotlinx.android.synthetic.main.list_adapter_item.view.*
 
 class TextViewSampleAdapter(
-        context: Context) : RecyclerView.Adapter<TextViewSampleAdapter.ListAdapterHolder>() {
+        context: Context) : androidx.recyclerview.widget.RecyclerView.Adapter<TextViewSampleAdapter.ListAdapterHolder>() {
     private val inflater = LayoutInflater.from(context)
 
     private val ID_NONE = 0
@@ -21,7 +21,7 @@ class TextViewSampleAdapter(
     private val ID_END_SMALL = 5
     private val ID_ARRAY = arrayOf(ID_NONE, ID_START, ID_MIDDLE, ID_END, ID_MARQUEE, ID_END_SMALL)
 
-    class ListAdapterHolder(view: View) : RecyclerView.ViewHolder(view)
+    class ListAdapterHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view)
 
     override fun getItemCount(): Int {
         return ID_ARRAY.size
