@@ -10,9 +10,9 @@ class FragmentSampleActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_sample_activity)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.container, SampleFragmentA.newInstance())
-                    .commitNow()
+//            supportFragmentManager.beginTransaction()
+//                    .add(R.id.container, SampleFragmentA.newInstance())
+//                    .commitNow()
         }
     }
 }

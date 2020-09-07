@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/sampleFragmentA">
+
+    <fragment
+        android:id="@+id/sampleFragmentA"
+        android:name="com.ykato.sample.kotlin.ui.sample.SampleFragmentA"
+        android:label="sample_fragment"
+        tools:layout="@layout/sample_fragment" >
+        <action
+            android:id="@+id/action_sampleFragmentA_to_sampleFragmentB"
+            app:destination="@id/sampleFragmentB" />
+    </fragment>
+    <fragment
+        android:id="@+id/sampleFragmentB"
+        android:name="com.ykato.sample.kotlin.ui.sample.SampleFragmentB"
+        android:label="sample_fragment_b"
+        tools:layout="@layout/sample_fragment_b" >
+        <action
+            android:id="@+id/action_sampleFragmentB_to_sampleFragmentC"
+            app:destination="@id/sampleFragmentC" />
+        <action
+            android:id="@+id/action_sampleFragmentB_to_sampleFragmentB2"
+            app:destination="@id/navigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/sampleFragmentC"
+        android:name="com.ykato.sample.kotlin.ui.sample.SampleFragmentC"
+        android:label="sample_fragment_c"
+        tools:layout="@layout/sample_fragment_c" >
+        <action
+            android:id="@+id/action_sampleFragmentC_to_sampleFragmentA"
+            app:destination="@id/sampleFragmentA"
+            app:popUpTo="@+id/sampleFragmentB"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/sampleFragmentB2">
+        <fragment
+            android:id="@+id/sampleFragmentB2"
+            android:name="com.ykato.sample.kotlin.ui.sample.SampleFragmentB2"
+            android:label="sample_fragment_b2"
+            tools:layout="@layout/sample_fragment_b2">
+            <action
+                android:id="@+id/action_sampleFragmentB2_to_sampleFragmentB3"
+                app:destination="@id/sampleFragmentB3" />
+        </fragment>
+        <fragment
+            android:id="@+id/sampleFragmentB3"
+            android:name="com.ykato.sample.kotlin.ui.sample.SampleFragmentB3"
+            android:label="sample_fragment_b3"
+            tools:layout="@layout/sample_fragment_b3" />
+    </navigation>
+</navigation>
