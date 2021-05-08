@@ -7,6 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 class DateItemDecoration: RecyclerView.ItemDecoration() {
     companion object {
         private const val HEADER_HEIGHT = 100
+        private val headerBackGroundPaint = Paint().apply {
+            color = Color.GRAY
+            alpha = 200
+        }
+        private val headerTextPaint = Paint().apply {
+            textSize = 65f
+            color = Color.WHITE
+        }
     }
 
     override fun getItemOffsets(
@@ -16,7 +24,7 @@ class DateItemDecoration: RecyclerView.ItemDecoration() {
             state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        if ((parent.getChildViewHolder(view) as DateAdapter.DateAdapterHolder).isBeginningOfMonth) {
+        if ((parent.getChildViewHolder(view) as DateAdapter.DateAdapterHolder).isFirstWeek) {
             outRect.top = HEADER_HEIGHT
         } else {
             outRect.top = 0
@@ -39,18 +47,20 @@ class DateItemDecoration: RecyclerView.ItemDecoration() {
                 } else {
                     parent.getChildViewHolder(prevView) as DateAdapter.DateAdapterHolder
                 }
-        if (prevHolder.isBeginningOfMonth) {
-            val paint1 = Paint().apply {
-                color = Color.GRAY
-                alpha = 200
-            }
-            c.drawRect(0f, prevView.y - HEADER_HEIGHT, parent.width.toFloat(), prevView.y, paint1)
-            val size = 65
-            val paint = Paint().apply {
-                textSize = size.toFloat()
-                color = Color.WHITE
-            }
-            c.drawText("${prevHolder.month} ${prevHolder.year}", 0f, prevView.y, paint)
+        if (prevHolder.isFirstWeek) {
+            c.drawRect(
+                    0f,
+                    prevView.y - HEADER_HEIGHT,
+                    parent.width.toFloat(),
+                    prevView.y,
+                    headerBackGroundPaint
+            )
+            c.drawText(
+                    "${prevHolder.month} ${prevHolder.year}",
+                    0f,
+                    prevView.y,
+                    headerTextPaint
+            )
         }
     }
 }

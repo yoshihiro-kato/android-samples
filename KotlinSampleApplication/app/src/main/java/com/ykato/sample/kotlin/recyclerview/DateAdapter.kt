@@ -23,7 +23,7 @@ class DateAdapter (
         var year: String = ""
         var month: String = ""
         var day: TextView = view.findViewById(R.id.day)
-        var isBeginningOfMonth = false
+        var isFirstWeek = false
     }
 
     override fun getItemCount(): Int {
@@ -42,7 +42,7 @@ class DateAdapter (
         val day = dateInfo.day
         holder.day.text = if (day == 0) "" else day.toString()
         holder.day.setTextColor(dateInfo.textColor)
-        holder.isBeginningOfMonth = dateInfo.isFirstWeek
+        holder.isFirstWeek = dateInfo.isFirstWeek
 
         if (dateInfoUtil.getDateInfoSize() - position < UPDATE_POSITION) {
             addDateInfo()
