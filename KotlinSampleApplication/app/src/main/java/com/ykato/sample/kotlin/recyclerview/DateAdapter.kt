@@ -10,15 +10,20 @@ import android.widget.TextView
 import com.ykato.sample.kotlin.R
 
 class DateAdapter (
-    context: Context) : androidx.recyclerview.widget.RecyclerView.Adapter<DateAdapter.DateAdapterHolder>() {
-    private val ITEM_COUNT = 700
-    private val UPDATE_POSITION = 14
+    context: Context) : RecyclerView.Adapter<DateAdapter.DateAdapterHolder>() {
+    companion object {
+        private const val ITEM_COUNT = 700
+        private const val UPDATE_POSITION = 14
+    }
     private val inflater = LayoutInflater.from(context)
     private val dateInfoUtil = DateInfoUtil()
     private var dateInfoList = dateInfoUtil.createDateInfoList()
 
-    class DateAdapterHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
-        var date = view.findViewById<TextView>(R.id.date)
+    class DateAdapterHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var year: String = ""
+        var month: String = ""
+        var day: TextView = view.findViewById(R.id.day)
+        var isBeginningOfMonth = false
     }
 
     override fun getItemCount(): Int {
@@ -31,8 +36,13 @@ class DateAdapter (
     }
 
     override fun onBindViewHolder(holder: DateAdapterHolder, position: Int) {
-        holder.date.text = dateInfoList[position].dateString
-        holder.date.setTextColor(dateInfoList[position].textColor)
+        val dateInfo = dateInfoList[position]
+        holder.year = dateInfo.year.toString()
+        holder.month = dateInfo.month.toString()
+        val day = dateInfo.day
+        holder.day.text = if (day == 0) "" else day.toString()
+        holder.day.setTextColor(dateInfo.textColor)
+        holder.isBeginningOfMonth = dateInfo.isFirstWeek
 
         if (dateInfoUtil.getDateInfoSize() - position < UPDATE_POSITION) {
             addDateInfo()
