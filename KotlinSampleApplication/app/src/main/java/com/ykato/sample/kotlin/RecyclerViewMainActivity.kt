@@ -17,7 +17,7 @@ class RecyclerViewMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_recycler_view)
 
         val recyclerView = findViewById<RecyclerView>(R.id.calendar)
-        val adapter = DateAdapter(this)
+        val adapter = DateAdapter()
         recyclerView.adapter = adapter
         val layoutManager = GridLayoutManager(this, SPAN_COUNT)
         recyclerView.layoutManager = layoutManager
