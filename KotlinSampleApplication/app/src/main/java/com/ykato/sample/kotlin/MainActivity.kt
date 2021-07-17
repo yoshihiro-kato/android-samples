@@ -8,13 +8,18 @@ import android.widget.ListView
 import com.ykato.sample.kotlin.surface.SurfaceViewActivity
 
 class MainActivity : AppCompatActivity() {
-    var TAG = "MainActivity"
+    companion object {
+        private const val SURFACE_VIEW = "SurfaceView "
+        private const val RECYCLER_VIEW = "RecyclerView"
+        private const val TEXT_VIEW = "TextView"
+        private const val FRAGMENT = "Fragment"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val funcList = arrayOf("surfaceView", "recyclerView", "textView", "fragment")
+        val funcList = arrayOf(SURFACE_VIEW, RECYCLER_VIEW, TEXT_VIEW, FRAGMENT)
 
         val listView = findViewById<ListView>(R.id.sampleList)
 
@@ -25,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         listView.adapter = adapter
 
-        listView.setOnItemClickListener { parent, view, position, id ->
+        listView.setOnItemClickListener { _, _, position, _ ->
             val intent = when (position) {
                 0 -> Intent(this, SurfaceViewActivity::class.java)
                 1 -> Intent(this, RecyclerViewMainActivity::class.java)
