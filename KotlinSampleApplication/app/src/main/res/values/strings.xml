@@ -4,4 +4,5 @@
     <string name="app_label">KotlinSampleApplication</string>
     <string name="settings_description">KotlinSample</string>
     <string name="title_activity_recyclerview_main">RecyclerviewMainActivity</string>
+    <string name="save_button">Save</string>
 </resources>

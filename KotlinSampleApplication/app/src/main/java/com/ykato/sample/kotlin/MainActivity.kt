@@ -1,11 +1,15 @@
 package com.ykato.sample.kotlin
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.fragment.app.commit
+import com.ykato.sample.kotlin.datastore.MemoFragment
 import com.ykato.sample.kotlin.surface.SurfaceViewActivity
+import kotlin.reflect.KClass
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -13,13 +17,14 @@ class MainActivity : AppCompatActivity() {
         private const val RECYCLER_VIEW = "RecyclerView"
         private const val TEXT_VIEW = "TextView"
         private const val FRAGMENT = "Fragment"
+        private const val DATA_STORE = "DataStore"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val funcList = arrayOf(SURFACE_VIEW, RECYCLER_VIEW, TEXT_VIEW, FRAGMENT)
+        val funcList = arrayOf(SURFACE_VIEW, RECYCLER_VIEW, TEXT_VIEW, FRAGMENT, DATA_STORE)
 
         val listView = findViewById<ListView>(R.id.sampleList)
 
@@ -31,13 +36,22 @@ class MainActivity : AppCompatActivity() {
         listView.adapter = adapter
 
         listView.setOnItemClickListener { _, _, position, _ ->
-            val intent = when (position) {
-                0 -> Intent(this, SurfaceViewActivity::class.java)
-                1 -> Intent(this, RecyclerViewMainActivity::class.java)
-                2 -> Intent(this, TextViewSampleActivity::class.java)
-                else -> Intent(this, FragmentSampleActivity::class.java)
+            when (position) {
+                0 -> launchActivity(SurfaceViewActivity::class)
+                1 -> launchActivity(RecyclerViewMainActivity::class)
+                2 -> launchActivity(TextViewSampleActivity::class)
+                3 -> launchActivity(FragmentSampleActivity::class)
+                else -> {
+                    val fragment = MemoFragment.newInstance()
+                    supportFragmentManager.commit {
+                        add(R.id.main, fragment)
+                        addToBackStack(null)
+                    }
+                }
             }
-            startActivity(intent)
         }
     }
+
+    private fun <T : Activity> launchActivity(cls: KClass<T>) =
+            startActivity(Intent(this, cls.java))
 }
