@@ -1,6 +1,5 @@
 package com.ykato.sample.kotlin.datastore
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.ykato.sample.kotlin.R
 import com.ykato.sample.kotlin.databinding.DataStoreFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MemoFragment : Fragment() {
 
     companion object {
@@ -29,8 +30,8 @@ class MemoFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(
                 viewLifecycleOwner,
                 object: OnBackPressedCallback(true) {

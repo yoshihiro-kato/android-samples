@@ -9,8 +9,10 @@ import android.widget.ListView
 import androidx.fragment.app.commit
 import com.ykato.sample.kotlin.datastore.MemoFragment
 import com.ykato.sample.kotlin.surface.SurfaceViewActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.reflect.KClass
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     companion object {
         private const val SURFACE_VIEW = "SurfaceView "

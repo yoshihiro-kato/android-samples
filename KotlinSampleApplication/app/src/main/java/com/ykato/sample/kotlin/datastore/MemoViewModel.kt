@@ -1,14 +1,17 @@
 package com.ykato.sample.kotlin.datastore
 
-import android.app.Application
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MemoViewModel(application: Application): AndroidViewModel(application) {
-    private val store = MemoRepository(application)
+@HiltViewModel
+class MemoViewModel @Inject constructor(
+    private val store: MemoRepository
+): ViewModel() {
     val text = MutableLiveData("")
 
     init {
