@@ -12,17 +12,17 @@ import javax.inject.Inject
 class MemoViewModel @Inject constructor(
     private val store: MemoRepository
 ): ViewModel() {
-    val text = MutableLiveData("")
+    val text = MutableLiveData(store.getCache())
 
     init {
-        viewModelScope.launch {
-            text.value = store.observe().first()
+        viewModelScope.launch(Dispatchers.IO) {
+            text.postValue(store.observe().first())
         }
     }
 
     fun onClick() {
         GlobalScope.launch(Dispatchers.IO) {
-            store.save(text.value!!)
+            store.save(text.value ?: "")
         }
     }
 }
